@@ -1,6 +1,6 @@
 import time
 import json
-import Salary
+import Salary_Specific
 import unicodecsv as csv
 import re
 import platform
@@ -12,31 +12,49 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 
-username = "haomingvince@yahoo.com" # your email here
-password = "TESTONLY" # your password here
+username = "haomingvince@yahoo.com"  # your email here
+password = "TESTONLY"  # your password here
 
-pages = 100
-links = ["https://www.glassdoor.com/Salaries/intern-salary-SRCH_KO0,6.htm", 
-         "https://www.glassdoor.com/Salaries/marketing-salary-SRCH_KO0,9.htm",
-         "https://www.glassdoor.com/Salaries/engineering-salary-SRCH_KO0,11.htm",
-         "https://www.glassdoor.com/Salaries/it-salary-SRCH_KO0,2.htm",
-         "https://www.glassdoor.com/Salaries/finance-salary-SRCH_KO0,7.htm"]
-
+pages = 12
+links = ["https://www.glassdoor.com/Salary/Google-Salaries-E9079.htm",
+         "https://www.glassdoor.com/Salary/Apple-Salaries-E1138.htm",
+         "https://www.glassdoor.com/Salary/Amazon-Salaries-E6036.htm",
+         "https://www.glassdoor.com/Salary/Facebook-Salaries-E40772.htm",
+         "https://www.glassdoor.com/Salary/LinkedIn-Salaries-E34865.htm",
+         "https://www.glassdoor.com/Salary/Intuit-Salaries-E2293.htm",
+         "https://www.glassdoor.com/Salary/Microsoft-Salaries-E1651.htm",
+         "https://www.glassdoor.com/Salary/Adobe-Salaries-E1090.htm",
+         "https://www.glassdoor.com/Salary/Salesforce-Salaries-E11159.htm",
+         "https://www.glassdoor.com/Salary/NVIDIA-Salaries-E7633.htm",
+         "https://www.glassdoor.com/Salary/VMware-Salaries-E12830.htm",
+         "https://www.glassdoor.com/Salary/Cisco-Systems-Salaries-E1425.htm",
+         "https://www.glassdoor.com/Salary/HP-Inc-Salaries-E1093161.htm",
+         "https://www.glassdoor.com/Salary/IBM-Salaries-E354.htm",
+         "https://www.glassdoor.com/Salary/Samsung-Electronics-Salaries-E3363.htm",
+         "https://www.glassdoor.com/Salary/Bloomberg-L-P-Salaries-E3096.htm",
+         "https://www.glassdoor.com/Salary/Qualcomm-Salaries-E640.htm",
+         "https://www.glassdoor.com/Salary/Dropbox-Salaries-E415350.htm",
+         "https://www.glassdoor.com/Salary/Walmart-Salaries-E715.htm",
+         "https://www.glassdoor.com/Salary/Expedia-Group-Salaries-E9876.htm"]
 
 def init_driver():
 	if platform.system() == "Windows":
-		driver = webdriver.Chrome(executable_path = "chromedriver.exe")
+		driver = webdriver.Chrome(executable_path="chromedriver.exe")
 	elif platform.system() == "Darwin":
-		driver = webdriver.Chrome(executable_path="/Users/haoming/OneDrive/Files/Academy/UCSD/Fall2019/ECE143/42/Scraper/Salary_Scraper/chromedriver")
+		driver = webdriver.Chrome(
+			executable_path="/Users/haoming/OneDrive/Files/Academy/UCSD/Fall2019/ECE143/42/Scraper/Salary_Scraper/chromedriver")
 	driver.wait = WebDriverWait(driver, 10)
 	return driver
+
 
 def login(driver, username, password):
 	driver.get("http://www.glassdoor.com/profile/login_input.htm")
 	try:
-		user_field = driver.wait.until(EC.presence_of_element_located((By.NAME, "username")))
+		user_field = driver.wait.until(
+			EC.presence_of_element_located((By.NAME, "username")))
 		pw_field = driver.find_element_by_xpath('//*[@id="userPassword"]')
-		login_button = driver.find_element_by_xpath('//*[@id="InlineLoginModule"]/div/div/div[1]/div[3]/form/div[3]/div[1]/button')
+		login_button = driver.find_element_by_xpath(
+			'//*[@id="InlineLoginModule"]/div/div/div[1]/div[3]/form/div[3]/div[1]/button')
 		user_field.send_keys(username)
 		user_field.send_keys(Keys.TAB)
 		time.sleep(1)
@@ -46,26 +64,31 @@ def login(driver, username, password):
 	except TimeoutException:
 		print("TimeoutException! Username/password field or login button not found on glassdoor.com")
 
+
 def parse_salaries_HTML(salaries, data):
 	for salary in salaries:
 		jobTitle = "-"
-		company = "-"
 		meanPay = "-"
 		jobTitle = salary.find("div", {"class": "salaryRow__JobInfoStyle__jobTitle strong"}).getText().strip()
-		company = salary.find("div", {"class": "salaryRow__JobInfoStyle__employerName"}).getText().strip()
+		print(jobTitle)
 		try:
 			meanPay = salary.find("div", {"class": "salaryRow__JobInfoStyle__meanBasePay common__formFactorHelpers__showHH"}).getText().strip()
 		except:
 			meanPay = 'xxx'
-		r = Salary.Salary(jobTitle, company, meanPay)
+		try:
+			s_range = salary.find("div", { "class": "salaryRow__JobInfoStyle__range common__formFactorHelpers__showHH"}).getText().strip()
+		except:
+			s_range = "xxx"
+		r = Salary_Specific.Salary_Specific(jobTitle, meanPay, s_range)
 		data.append(r.dic)
 	return data
+
 
 def get_data(driver, URL, startPage, endPage, data, refresh):
 	if (startPage > endPage):
 		return data
 	print("\nPage " + str(startPage) + " of " + str(endPage))
-	currentURL = URL + "_IP" + str(startPage) + ".htm"
+	currentURL = URL + "_P" + str(startPage) + ".htm"
 	time.sleep(2)
 	if (refresh):
 		driver.get(currentURL)
@@ -74,7 +97,7 @@ def get_data(driver, URL, startPage, endPage, data, refresh):
 	HTML = driver.page_source
 	soup = BeautifulSoup(HTML, "html.parser")
 	salaries = soup.find_all(
-	    "div", {"class": ["salaryRow__JobInfoStyle__employerInfo col-10 pl"]})
+	    "div", {"class": ["row align-items-center m-0 salaryRow__SalaryRowStyle__row"]})
 	if (salaries):
 		data = parse_salaries_HTML(salaries, data)
 		print("Page " + str(startPage) + " scraped.")
@@ -88,9 +111,10 @@ def get_data(driver, URL, startPage, endPage, data, refresh):
 		get_data(driver, URL, startPage, endPage, data, False)
 	return data
 
+
 def output_to_csv(keyword, place, scraped_data):
         with open('%s-%s-job-results.csv' % (keyword, place), 'wb')as csvfile:
-            fieldnames = ["jobTitle", "company", "meanPay"]
+            fieldnames = ["jobTitle", "meanPay", "Range"]
             writer = csv.DictWriter(
                 csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             writer.writeheader()
@@ -98,7 +122,9 @@ def output_to_csv(keyword, place, scraped_data):
                 for data in scraped_data:
                     writer.writerow(data)
             else:
-                print("Your search for %s, in %s does not match any jobs" %(keyword, place))
+                print("Your search for %s, in %s does not match any jobs" %
+                      (keyword, place))
+
 
 if __name__ == "__main__":
 	"""
@@ -111,7 +137,7 @@ if __name__ == "__main__":
 	login(driver, username, password)
 	time.sleep(10)
 	for link in links:
-		pay = re.findall(r".*/Salaries/(.*)-(.*)-.*", link)
+		pay = re.findall(r".*/Salary/(.*)-(.*)-.*", link)
 		print("\nStarting data scraping ...")
 		data = get_data(driver, link[:-4], 1, pages, [], True)
 		print("\nExporting data to " + pay[0][0] + "salary" + ".csv")
