@@ -16,18 +16,23 @@ username = "haomingvince@yahoo.com" # your email here
 password = "TESTONLY" # your password here
 
 pages = 100
-links = ["https://www.glassdoor.com/Salaries/intern-salary-SRCH_KO0,6.htm", 
-         "https://www.glassdoor.com/Salaries/marketing-salary-SRCH_KO0,9.htm",
-         "https://www.glassdoor.com/Salaries/engineering-salary-SRCH_KO0,11.htm",
-         "https://www.glassdoor.com/Salaries/it-salary-SRCH_KO0,2.htm",
-         "https://www.glassdoor.com/Salaries/finance-salary-SRCH_KO0,7.htm"]
+# links = ["https://www.glassdoor.com/Salaries/intern-salary-SRCH_KO0,6.htm", 
+#          "https://www.glassdoor.com/Salaries/marketing-salary-SRCH_KO0,9.htm",
+#          "https://www.glassdoor.com/Salaries/engineering-salary-SRCH_KO0,11.htm",
+#          "https://www.glassdoor.com/Salaries/it-salary-SRCH_KO0,2.htm",
+#          "https://www.glassdoor.com/Salaries/finance-salary-SRCH_KO0,7.htm"]
+links = ["https://www.glassdoor.com/Salaries/legal-salary-SRCH_KO0,5.htm",
+		 "https://www.glassdoor.com/Salaries/pharmacy-salary-SRCH_KO0,8.htm",
+		 "https://www.glassdoor.com/Salaries/customer-service-salary-SRCH_KO0,16.htm",
+		 "https://www.glassdoor.com/Salaries/education-salary-SRCH_KO0,9.htm",
+		 "https://www.glassdoor.com/Salaries/banking-salary-SRCH_KO0,7.htm"]
 
 
 def init_driver():
 	if platform.system() == "Windows":
 		driver = webdriver.Chrome(executable_path = "chromedriver.exe")
 	elif platform.system() == "Darwin":
-		driver = webdriver.Chrome(executable_path="/Users/haoming/OneDrive/Files/Academy/UCSD/Fall2019/ECE143/42/Scraper/Salary_Scraper/chromedriver")
+		driver = webdriver.Chrome(executable_path="/Users/haoming/OneDrive/Files/Academy/UCSD/Fall2019/ECE143/42/Scraper/SalaryScraper/chromedriver")
 	driver.wait = WebDriverWait(driver, 10)
 	return driver
 
