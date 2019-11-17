@@ -1,21 +1,21 @@
-	recommend to a friend	approve of ceo
-google	87	92
-apple	78	91
-facebook	88	92
-amazon	75	86
-linkedin	84	98
-intuit	88	94
-microsoft	87	97
-adobe	83	97
-salesforce	86	96
-nvidia	95	99
-vmware	86	96
-cisco	81	92
-hp	82	
-IBM	72	73
-samsung	67	72
-bloomberg	73	90
-qualcomm	71	65
-dropbox	79	91
-walmart	49	69
-expedia	78	84
+company,recommend_to_a_friend,approve_of_ceo
+google,87,92
+apple,78,91
+facebook,88,92
+amazon,75,86
+linkedin,84,98
+intuit,88,94
+microsoft,87,97
+adobe,83,97
+salesforce,86,96
+nvidia,95,99
+vmware,86,96
+cisco,81,92
+samsung,67,72
+hp,82,
+IBM,72,73
+bloomberg,73,90
+dropbox,79,91
+expedia,78,84
+walmart,49,69
+qualcomm,71,65
