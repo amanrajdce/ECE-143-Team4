@@ -9,13 +9,13 @@ Salary Scraper for glassdoor, modified and update from https://github.com/willia
 
 ## Usage
 For salary_scraper.py:
-    * Go to glassdoor and find which job title you want to scrape. Copy the links to the links list at top.<br\>
-    * Enter Username and password for glassdoor.<br\>
-    * Go to terminal, call ``python3 salary_scraper.py``<br\>
-    * Wait until the scraper stop.<br\>
+* Go to glassdoor and find which job title you want to scrape. Copy the links to the links list at top.
+* Enter Username and password for glassdoor.
+* Go to terminal, call ``python3 salary_scraper.py``
+* Wait until the scraper stop.
 
 For salary_scraper.py:
-    * Go to glassdoor and find which company you want to scrape. Copy the links to the links list at top.<br\>
-    * Enter Username and password for glassdoor.<br\>
-    * Go to terminal, call ``python3 salary_scraper_specific.py``<br\>
-    * Wait until the scraper stop.<br\>
+* Go to glassdoor and find which company you want to scrape. Copy the links to the links list at top.
+* Enter Username and password for glassdoor.
+* Go to terminal, call ``python3 salary_scraper_specific.py``
+* Wait until the scraper stop.
