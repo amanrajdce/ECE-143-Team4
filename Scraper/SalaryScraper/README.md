@@ -14,7 +14,7 @@ For salary_scraper.py:
 * Go to terminal, call ``python3 salary_scraper.py``
 * Wait until the scraper stop.
 
-For salary_scraper.py:
+For salary_scraper_specific.py:
 * Go to glassdoor and find which company you want to scrape. Copy the links to the links list at top.
 * Enter Username and password for glassdoor.
 * Go to terminal, call ``python3 salary_scraper_specific.py``
