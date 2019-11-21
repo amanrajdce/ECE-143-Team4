@@ -140,7 +140,7 @@ def output_to_csv(keyword, place, scraped_data):
 	:param scraped_data: Data we scrapped
 	:type scraped_data: list
 	"""
-	with open('%s-%s-job-results.csv' % (keyword, place), 'wb')as csvfile:
+	with open('/tables/%s-%s-job-results.csv' % (keyword, place), 'wb')as csvfile:
 		fieldnames = ["jobTitle", "company", "meanPay"]
 		writer = csv.DictWriter(
 			csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
