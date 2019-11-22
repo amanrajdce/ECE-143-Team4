@@ -2,7 +2,7 @@
 This piece of code is heavily adapted from https://github.com/williamxie11/glassdoor-interview-scraper
 
 ## Usage
-1. Run ``python salary_scraper_specific.py`` and wait until the scraper stops to scrape salary data for companies mentioned in ``companies.txt`` file in the main directory.
+Run ``python salary_scraper_specific.py`` and wait until the scraper stops to scrape salary data for companies mentioned in ``companies.txt`` file in the main directory.
 
 You can further modify the script and select for which specific company or job title you want scrape.
 1. If you want to scrape for specific job titles.
