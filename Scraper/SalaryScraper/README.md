@@ -1,21 +1,11 @@
 #  Salary Scraper for Glassdoor
-Salary Scraper for glassdoor, modified and update from https://github.com/williamxie11/glassdoor-interview-scraper
-
-##  Requirement
-1. Chrome 78
-2. Python 3
-3. Python packages: bs4, selenium, unicodecsv
-4. chromedriver from selenium webpage. https://chromedriver.chromium.org/downloads
+This piece of code is heavily adapted from https://github.com/williamxie11/glassdoor-interview-scraper
 
 ## Usage
-For salary_scraper.py:
-* Go to glassdoor and find which job title you want to scrape. Copy the links to the links list at top.
-* Enter Username and password for glassdoor.
-* Go to terminal, call ``python3 salary_scraper.py``
-* Wait until the scraper stop.
+1. If you want to scrape for specific job titles.
+  * Go to glassdoor and find which job title you want to scrape, copy the urls to ``links`` in ``salary_scraper.py`` and add your glassdoor username and password.
+  * Run ``python salary_scraper.py`` and wait until the scraper stops.
 
-For salary_scraper_specific.py:
-* Go to glassdoor and find which company you want to scrape. Copy the links to the links list at top.
-* Enter Username and password for glassdoor.
-* Go to terminal, call ``python3 salary_scraper_specific.py``
-* Wait until the scraper stop.
+2. If you want to scrape for specific company.
+  * Go to glassdoor and find which company you want to scrape, copy the urls to ``links`` in ``salary_scraper_specific.py`` and add your glassdoor username and password.
+  * Run ``python salary_scraper_specific.py`` and wait until the scraper stops.

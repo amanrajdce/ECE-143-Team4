@@ -1,0 +1,6 @@
+pandas
+selenium
+numpy
+nltk
+bs4
+unicodecsv
