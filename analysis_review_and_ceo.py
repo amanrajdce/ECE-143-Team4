@@ -19,7 +19,12 @@ ceo_table = 'Scraper/ReviewScraper/ceo_ratings.csv'
 
 def compute_most_job_by_city(jobs, top=10):
     """
+    Aggregrate number of jobs by city
+
+    jobs: pandasDataFrame
     """
+    assert(isinstance(jobs, pd.DataFrame))
+
     jobs = jobs[pd.notnull(jobs['location'])]
     jobs['city'] = jobs['location'].apply(lambda x: x.split(", ")[0].lower())
     gb = jobs.groupby('city')
@@ -34,7 +39,12 @@ def compute_most_job_by_city(jobs, top=10):
 
 def compute_most_job_by_state(jobs, top=10):
     """
+    Aggregrate number of jobs by state
+
+    jobs: pandasDataFrame
     """
+    assert(isinstance(jobs, pd.DataFrame))
+
     jobs = jobs[pd.notnull(jobs['location'])]
     jobs['state'] = jobs['location'].apply(lambda x: x.split(", ")[-1])
 
@@ -49,7 +59,12 @@ def compute_most_job_by_state(jobs, top=10):
 
 def compute_pos_neg_review_percent(review):
     """
+    Aggregrate positive and negative review for each company
+
+    review: pandasDataFrame
     """
+    assert(isinstance(review, pd.DataFrame))
+
     gb = review.groupby('company')
     comp = gb.indices.keys()
     review = {'positive': [], 'negative': [], 'neutral': []}
@@ -84,7 +99,12 @@ def compute_pos_neg_review_percent(review):
 
 def compute_career_rating(review):
     """
+    Aggregrate career and compensation rating for each company
+
+    review: pandasDataFrame
     """
+    assert(isinstance(review, pd.DataFrame))
+
     review = review[pd.notnull(review['rating_career'])]
     review = review[pd.notnull(review['rating_comp'])]
 
@@ -112,8 +132,17 @@ def compute_career_rating(review):
 
 def plot_city_most_jobs(review_table, savefig=False):
     """
-    Return the graph with which city in US offers most job.
+    Plot distribution of jobs by city
+
+    review_table: str
+        absolute path for review table
+    savefig: bool
+        flag to enable to save generated plot
     """
+    assert(isinstance(review_table, str))
+    assert(len(review_table) > 0)
+    assert(isinstance(savefig, bool))
+
     review_table = pd.read_csv(review_table)
     city_count, cities = compute_most_job_by_city(review_table.copy())
 
@@ -129,8 +158,17 @@ def plot_city_most_jobs(review_table, savefig=False):
 
 def plot_state_most_jobs(review_table, savefig=False):
     """
-    Return the graph with which city in US offers most job.
+    Plot distribution of jobs by state
+
+    review_table: str
+        absolute path for review table
+    savefig: bool
+        flag to enable to save generated plot
     """
+    assert(isinstance(review_table, str))
+    assert(len(review_table) > 0)
+    assert(isinstance(savefig, bool))
+
     review_table = pd.read_csv(review_table)
     count_state, states = compute_most_job_by_state(review_table.copy())
 
@@ -147,7 +185,17 @@ def plot_state_most_jobs(review_table, savefig=False):
 
 def plot_approve_of_ceo(ceo_table, savefig=False):
     """
+    Plot approval of CEO for company
+
+    ceo_table: str
+        absolute path for ceo rating table
+    savefig: bool
+        flag to enable to save generated plot
     """
+    assert(isinstance(ceo_table, str))
+    assert(len(ceo_table) > 0)
+    assert(isinstance(savefig, bool))
+
     ceo_table = pd.read_csv(ceo_table)
     # this drops HP as we don't have CEO approval rating
     ceo_table = ceo_table.dropna()
@@ -185,7 +233,17 @@ def plot_approve_of_ceo(ceo_table, savefig=False):
 
 def plot_pos_neg_reviews(review_table, savefig=False):
     """
+    Plot positive and negative rating for company
+
+    review_table: str
+        absolute path for review table
+    savefig: bool
+        flag to enable to save generated plot
     """
+    assert(isinstance(review_table, str))
+    assert(len(review_table) > 0)
+    assert(isinstance(savefig, bool))
+
     review_table = pd.read_csv(review_table)
     company, reviews = compute_pos_neg_review_percent(review_table.copy())
     positive = np.asarray(reviews['positive'])
@@ -222,7 +280,17 @@ def plot_pos_neg_reviews(review_table, savefig=False):
 
 def plot_career_comp_rating(review_table, savefig=False):
     """
+    Plot career and compensation benefits rating for company
+
+    review_table: str
+        absolute path for review table
+    savefig: bool
+        flag to enable to save generated plot
     """
+    assert(isinstance(review_table, str))
+    assert(len(review_table) > 0)
+    assert(isinstance(savefig, bool))
+
     review_table = pd.read_csv(review_table)
     company, rating = compute_career_rating(review_table.copy())
 
