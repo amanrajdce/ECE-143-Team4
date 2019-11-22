@@ -1,5 +1,5 @@
-# Citation
-I'd love to see how folks use this scraper! Please cite this repository in your publication and drop me a message. 😊
+# Note
+This code is originally pushed by Matthew Chatham(Jun, 2018) and iopsych(Jul, 2019), and modified by Xiufeng Zhao(Nov, 2019).
 
 # Introduction
 Have you ever wanted to scrape reviews from Glassdoor, but bemoaned the site's lack of a public API for reviews? Worry no more! This script will go through pages and pages of reviews and scrape review data into a tidy CSV file. Pass it a company page and set a limit to scrape the 25 most conveniently available reviews, or control options like the number of reviews to scrape and the max/min review publication date.
