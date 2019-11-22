@@ -10,7 +10,7 @@ salesforce
 nvidia
 vmware
 cisco
-hp
+HP
 IBM
 samsung
 bloomberg

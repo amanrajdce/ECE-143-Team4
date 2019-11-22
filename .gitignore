@@ -4,4 +4,5 @@ Icon*
 .DS_Store
 *.swp
 */*/Icon*
+*pycache*
 
