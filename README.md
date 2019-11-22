@@ -1,2 +1,2 @@
 # 42
-Analysis on Youtube/Glassdor 
+Analysis on Glassdor 
