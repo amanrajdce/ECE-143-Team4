@@ -32,7 +32,10 @@ optional arguments:
 ``` 
 
 ### Example
-Suppose you want to get the top 300 most popular reviews for Google. Run the command as follows:
+Get the top 300 most popular reviews for Google. Run the command as follows:
 
 `python main.py --headless --url "https://www.glassdoor.com/Reviews/Google-Reviews-E9079.htm" --limit 300 -f tables/google_reviews.csv`
 
+Get the top 300 most popular reviews for Linkedin. Run the command as follows:
+
+`python main.py --headless --url "https://www.glassdoor.com/Reviews/LinkedIn-Reviews-E34865.htm" --limit 300 -f tables/linkedin_reviews.csv`
