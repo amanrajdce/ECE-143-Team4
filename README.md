@@ -12,7 +12,7 @@ We will scrape data from Glassdor first and then do some interesting analysis.
   * First change director by ``cd Scraper/SalaryScraper`` and edit file ``salary_scraper_specific.py`` to include your Glassdor username and password.
   * Now run ``python salary_scraper_specific.py`` and wait till scraper stops.
 2. Steps to scrape review data:
- * First change director by ``cd Scraper/ReviewScraper`` and ...
+ * First change director by ``cd Scraper/ReviewScraper``, and then run command `python run_all.py`.
 
 ## Data pre-processing
 After we obtain review and salary data for each company, the next step is to merge these individual tables and pre-process to clean the outliers. This stage generate following tables:
