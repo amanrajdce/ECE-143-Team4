@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# updated docstrings
 # In[88]:
 
 
@@ -27,7 +27,9 @@ def salary_of_category(d):
     '''
     for all non-0 input
     return range of this category as DataFrame
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(d, pd.DataFrame)
     salary = d[d.salary_range.notnull()]['salary_range']
     s = salary.str.replace('K', '').str.replace('$', '').str.replace('€', '').str.replace('£', '').str.replace("Range: ", '')
     s = s.apply(lambda x: pd.Series(x.split(' - '))) 
@@ -42,7 +44,9 @@ def average_fulltime_by_category(data):
     '''
     compute the average range of salary per category
     return several DataFrames, each containing the series of the upper and lower range of a category
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
     # group all category
     groups = data.groupby('category')
     eng = groups.get_group('engineering')
@@ -70,8 +74,9 @@ def salary_by_category(data):
     '''
     compute the average range of salary per category
     return several DataFrames, each containing the upper and lower range of a category (only two numbers)
+    parameter type: pd.DataFrame
     '''
-    
+    assert isinstance(data, pd.DataFrame)
     # Data frame of low / high salary
     ave_eng,ave_it,ave_managerial,ave_marketing,ave_others,ave_sales = average_fulltime_by_category(data)
     
@@ -92,7 +97,22 @@ def salary_by_category(data):
 def bar_group(file_name, x, y, title, size, classes, values, width=0.8):
     '''
     plot bar chart of category analysis. 
+    file_name type: str
+    x type: str
+    y type: str
+    title type: str
+    size type: tuple
+    classes type: list
+    values type: list
+    width type: float
     '''
+    assert isinstance(file_name, str)
+    assert isinstance(x ,str) and isinstance(y ,str) and isinstance(title ,str)
+    assert isinstance(size, tuple)
+    assert isinstance(classes, list)
+    assert isinstance(values, list)
+    assert isinstance(width, float)
+    
     fig, ax = plt.subplots(figsize=size)
     plt.xlabel(x, fontsize = 12)
     plt.ylabel(y, fontsize = 12)
@@ -116,7 +136,10 @@ def bar_group(file_name, x, y, title, size, classes, values, width=0.8):
 def plot_average_fulltime_by_category(data):
     '''
     plot bar chart of fulltime salary among category analysis.
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["lightblue", "gold"])
     salary_eng, salary_it, salary_mana, salary_mk, salary_others, salary_sales = salary_by_category(data)
     num_list2 = [salary_eng[0],salary_it[0],salary_mana[0],salary_mk[0],salary_others[0],salary_sales[0]]
@@ -135,7 +158,10 @@ def plot_distribution_category(data):
     '''
     plot the distribution graph of each category
     one lower limit, the other the upper limit
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     # Data frame of low / high salary
     ave_eng,ave_it,ave_managerial,ave_marketing,ave_others,ave_sales = average_fulltime_by_category(data)
     # 1, 2
@@ -199,7 +225,9 @@ def plot_distribution_category(data):
 def plot_average_intern_by_category(data):
     '''
     plot bar chart of fulltime salary among category analysis.
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
     mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["lightblue", "gold"])
     salary_eng, salary_it, salary_mana, salary_mk, salary_others, salary_sales = salary_by_category(data)
     num_list2 = [salary_eng[0],salary_it[0],salary_mana[0],salary_mk[0],salary_others[0],salary_sales[0]]
@@ -219,7 +247,10 @@ def salary_of_company(d):
     '''
     for all non-0 input
     return range of a certain company
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(d, pd.DataFrame)
+    
     salary = d[d.salary_range.notnull()]['salary_range']
     s = salary.str.replace('K', '').str.replace('$', '').str.replace('€', '').str.replace('£', '').str.replace("Range: ", '')
     s = s.apply(lambda x: pd.Series(x.split(' - '))) 
@@ -234,7 +265,22 @@ def salary_of_company(d):
 def bar_group_2(file_name, x, y, title, size, classes, values, width=0.8):
     '''
     basic plotting function for company-wise analysis
+    file_name type: str
+    x type: str
+    y type: str
+    title type: str
+    size type: tuple
+    classes type: list
+    values type: list
+    width type: float
     '''
+    assert isinstance(file_name, str)
+    assert isinstance(x ,str) and isinstance(y ,str) and isinstance(title ,str)
+    assert isinstance(size, tuple)
+    assert isinstance(classes, list)
+    assert isinstance(values, list)
+    assert isinstance(width, float)
+    
     fig, ax = plt.subplots(figsize=size)
     plt.xlabel(x, fontsize = 20)
     plt.ylabel(y, fontsize = 20)
@@ -257,9 +303,11 @@ def bar_group_2(file_name, x, y, title, size, classes, values, width=0.8):
 
 def average_salary_company(data):
     '''
-    compute the average lower and upper range of a company's salary
-    
+    compute the average lower and upper range of a company's salary    
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     groups_company = data.groupby('company')
     company_names = (list(groups_company.groups.keys()))
     num_companies = len(company_names)
@@ -299,7 +347,10 @@ def average_salary_company(data):
 def plot_average_fulltime_salary_company(data):
     '''
     plot the average range of a company's salary
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     name_list, num_list1, num_list2 = average_salary_company(data)
     mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["lightblue", "gold"])
     bar_group_2('./graphs/a1_q7_2.png', 'Company', 'Average salary k/yr','Average salary range of fulltime jobs among company',(18,10), name_list, [num_list1, num_list2])
@@ -317,7 +368,10 @@ def salary_of_company_int(d):
     return range of a certain company
     distinguish hourly and yearly income
     using different function because the data in int_file are a bit different
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(d, pd.DataFrame)
+    
     salary = d[d.salary_range.notnull()]['salary_range']
     s = salary.str.replace('$', '').str.replace('€', '').str.replace('£', '').str.replace("Range: ", '').str.replace(" ", '').str.replace(" ", '')
     for j in s.index:
@@ -342,9 +396,11 @@ def salary_of_company_int(d):
 
 def average_salary_company_int(data):
     '''
-    compute the average lower and upper range of a company's salary
-    
+    compute the average lower and upper range of a company's salary    
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     groups_company = data.groupby('company')
     company_names = (list(groups_company.groups.keys()))
     num_companies = len(company_names)
@@ -384,7 +440,10 @@ def average_salary_company_int(data):
 def plot_average_intern_salary_company(data):
     '''
     plot the average range of a company's salary
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     name_list, num_list1, num_list2 = average_salary_company_int(data)
     mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["lightblue", "gold"])
     bar_group_2('./graphs/a1_q7_2.png', 'Company', 'Average salary k/yr','Average salary range of intern among company',(18,10), name_list, [num_list1, num_list2])
@@ -399,7 +458,10 @@ def plot_average_intern_salary_company(data):
 def num_of_jobs_category(data):
     '''
     compute number of unique job titles in all categories
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     names = []
     num = []
     for category in data.groupby('category').groups:
@@ -419,7 +481,22 @@ def num_of_jobs_category(data):
 def bar_group_3(file_name, x, y, title, size, classes, values, width=0.4):
     '''
     basic plotting function for job opportunity analysis
+    file_name type: str
+    x type: str
+    y type: str
+    title type: str
+    size type: tuple
+    classes type: list
+    values type: list
+    width type: float
     '''
+    assert isinstance(file_name, str)
+    assert isinstance(x ,str) and isinstance(y ,str) and isinstance(title ,str)
+    assert isinstance(size, tuple)
+    assert isinstance(classes, list)
+    assert isinstance(values, list)
+    assert isinstance(width, float)
+    
     fig, ax = plt.subplots(figsize=size)
     plt.xlabel(x, fontsize = 12)
     plt.ylabel(y, fontsize = 12)
@@ -443,7 +520,10 @@ def bar_group_3(file_name, x, y, title, size, classes, values, width=0.4):
 def plot_num_of_jobs_category(data):
     '''
     plot a bar chart illustrating the number of different job titles in categories
+    parameter type: pd.DataFrame
     '''
+    assert isinstance(data, pd.DataFrame)
+    
     numbers = num_of_jobs_category(data)
     mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["green"])
     names = ['Others', 'Engineering', 'Managerial', 'Sales', 'Marketing', "IT"]
