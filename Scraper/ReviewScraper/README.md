@@ -34,10 +34,10 @@ optional arguments:
 ### Example
 1. Get the top 300 most popular reviews for Google  
   * find the review webpage of Google on Glassdoor, which is "https://www.glassdoor.com/Reviews/Google-Reviews-E9079.htm"
-  * put the link into the command and run it, which would be as follows:
+  * put the link into the command and run it, which would be as follows:  
 `python main.py --headless --url "https://www.glassdoor.com/Reviews/Google-Reviews-E9079.htm" --limit 300 -f tables/google_reviews.csv`
 
 2. Get the top 300 most popular reviews for Linkedin   
   * find the review webpage of Linkedin on Glassdoor, which is "https://www.glassdoor.com/Reviews/LinkedIn-Reviews-E34865.htm"
-  * put the link into the command and run it, which would be as follows:
+  * put the link into the command and run it, which would be as follows:  
 `python main.py --headless --url "https://www.glassdoor.com/Reviews/LinkedIn-Reviews-E34865.htm" --limit 300 -f tables/linkedin_reviews.csv`
