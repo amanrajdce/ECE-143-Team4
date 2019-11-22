@@ -41,3 +41,6 @@ optional arguments:
   * find the review webpage of Linkedin on Glassdoor, which is "https://www.glassdoor.com/Reviews/LinkedIn-Reviews-E34865.htm"
   * put the link into the command and run it, which would be as follows:  
 `python main.py --headless --url "https://www.glassdoor.com/Reviews/LinkedIn-Reviews-E34865.htm" --limit 300 -f tables/linkedin_reviews.csv`
+
+### Our scraping process
+To reproducing our scraping process, run `python run_all.py` directly.
