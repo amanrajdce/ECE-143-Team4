@@ -1,5 +1,5 @@
 # Introduction
-This script can go through pages and pages of reviews in Glassdoor and scrape review data into a tidy CSV file. And it is mostly adopted from [iopsych(Jul, 2019)](https://github.com/iopsych/glassdoor-review-scraper).
+This script can go through pages and pages of reviews in Glassdoor and scrape review data into a tidy CSV file. And it is mostly adopted from [iopsych's repo](https://github.com/iopsych/glassdoor-review-scraper).
 
 # Prerequisites
 1. Install [Chromedriver](http://chromedriver.chromium.org/) in the working directory.
