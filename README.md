@@ -1,5 +1,5 @@
 # Analysis on data scraped from Glassdoor
-We will scrape data from Glassdor first and then do some interesting analysis.
+We scrape data from Glassdor first and then do some interesting analysis.
 
 ## Requirements
 * Chrome v78
