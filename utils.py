@@ -1,5 +1,5 @@
 """
-US state abbreviation
+US state abbreviations
 """
 us_state_abbrev = {
     'Alabama': 'AL',
